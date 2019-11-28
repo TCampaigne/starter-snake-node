@@ -39,14 +39,8 @@ const logBoard = (board) => {
   for (let row of board) {
     let rowOutput = ''
     for (let space of row) {
-      if (!space) {
-        console.log("!!!!!!!!!!!!!!!!!!!!!!")
-      }
-      if (typeof space === 'undefined') {
-        console.log("$$$$$$$$$$$$$$$$$$$$$$$$")
-      }
       const char = space || '.'
-      rowOutput += `${space} `
+      rowOutput += `${char} `
     }
     
     console.log(rowOutput)
