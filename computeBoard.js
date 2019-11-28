@@ -36,7 +36,7 @@ module.exports = {
 
 const logBoard = (board) => {
   // Print out board for debugging
-  for (var i = board[0].length - 1; i >= 0; i--) {
+  for (var i = 0; i < board[0].length; i++) {
     let rowOutput = ''
     for (let column of board) {
       const char = column[i] || '.'
