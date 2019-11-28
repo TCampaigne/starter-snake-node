@@ -47,6 +47,7 @@ app.post('/move', (request, response) => {
   console.log(`Current location is x:${me.x} y:${me.y}`)
 
   const board = new Board(request.body.board, request.body.you)
+  board.log()
   let move = 'up'
 
   // Check up

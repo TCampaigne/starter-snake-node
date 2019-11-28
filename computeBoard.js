@@ -27,8 +27,6 @@ class Board {
       this.board[part.x][part.y] = 'm'
     } 
     this.board[me.body[0].x][me.body[0].y] = 'M'
-
-    logboard(this.board)
   }
 
   log () {
