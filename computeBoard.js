@@ -1,9 +1,13 @@
 module.exports = {
   compute: (boardJSON, me) => {
-    let board = []
+    let board = new Array(boardJSON.width)
+    for (let column in board) {
+      board[column] = new Array(boardJSON.height)
+    }
     console.log('Computing game state...')
     // Food pieces
     for (let food of boardJSON.food) {
+      board[food.x] ||= []
       board[food.x][food.y] = 'f'
     }
 
