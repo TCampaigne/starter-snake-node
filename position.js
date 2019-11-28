@@ -1,7 +1,7 @@
-class Position {
+class Snake {
   constructor(me) {
-    this.x = me.x
-    this.y = me.y
+    this.x = me.body[0].x
+    this.y = me.body[0].y
   }
 
   up () {
@@ -21,4 +21,4 @@ class Position {
   }
 }
 
-module.exports = Position
+module.exports = Snake
