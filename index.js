@@ -51,13 +51,13 @@ app.post('/move', (request, response) => {
   let move = 'up'
 
   // Check up
-  if (board.isSafe({x: me.x, y: me.y - 1})) {
+  if (board.isOpen({x: me.x, y: me.y - 1})) {
     move = 'up'
-  } else if (board.isSafe({x: me.x + 1, y: me.y})) {
+  } else if (board.isOpen({x: me.x + 1, y: me.y})) {
     move = 'right'
-  } else if (board.isSafe({x: me.x, y: me.y + 1})) {
+  } else if (board.isOpen({x: me.x, y: me.y + 1})) {
     move = 'down'
-  } else if (board.isSafe({x: me.x - 1, y: me.y})) {
+  } else if (board.isOpen({x: me.x - 1, y: me.y})) {
     move = 'left'
   }
 
