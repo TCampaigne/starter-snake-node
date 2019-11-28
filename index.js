@@ -49,13 +49,13 @@ app.post('/move', (request, response) => {
   let move = 'up'
 
   // Check up
-  if (board.isOpen(me.up)) {
+  if (board.isSafe(me.up)) {
     move = 'up'
-  } else if (board.isOpen(me.right)) {
+  } else if (board.isSafe(me.right)) {
     move = 'right'
-  } else if (board.isOpen(me.down)) {
+  } else if (board.isSafe(me.down)) {
     move = 'down'
-  } else if (board.isOpen(me.left)) {
+  } else if (board.isSafe(me.left)) {
     move = 'left'
   }
 
