@@ -35,14 +35,20 @@ app.post('/start', (request, response) => {
 
 // Handle POST request to '/move'
 app.post('/move', (request, response) => {
-  // NOTE: Do something here to generate your move
 
-  // Response data
-  const data = {
-    move: 'right', // one of: ['up','down','left','right']
+  const snake_loc = {
+    x: request.body.you.body[0].x,
+    y: request.body.you.body[0].y
   }
 
-  return response.json(data)
+  console.log(`Current location is x:${snake_loc.x} y:${snake_loc.y}` )
+
+  let move = 'up'
+
+  console.log(`Move is:${move}` )
+  return response.json({
+    move: move,
+  })
 })
 
 app.post('/end', (request, response) => {
