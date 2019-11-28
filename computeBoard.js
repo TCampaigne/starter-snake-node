@@ -25,7 +25,7 @@ module.exports = {
     // Print out board for debugging
     for (let row of board) {
       let rowOutput = ''
-      for (let space of board) {
+      for (let space of row) {
         rowOutput += `${space} `
       }
       
