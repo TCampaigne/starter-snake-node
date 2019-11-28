@@ -41,7 +41,7 @@ class Board {
   }
 
   isSafe (proposed) {
-    safe = this.isOpen(proposed) && this.isNotDeadend(proposed)
+    const safe = this.isOpen(proposed) && this.isNotDeadend(proposed)
     console.log(`Checking (${proposed.x},${proposed.y}) - ${safe}`)
     return safe
   }
