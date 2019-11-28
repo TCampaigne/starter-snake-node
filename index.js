@@ -40,15 +40,25 @@ app.post('/start', (request, response) => {
 // Handle POST request to '/move'
 app.post('/move', (request, response) => {
 
-  const snake_loc = {
+  const me = {
     x: request.body.you.body[0].x,
     y: request.body.you.body[0].y
   }
-  console.log(`Current location is x:${snake_loc.x} y:${snake_loc.y}`)
+  console.log(`Current location is x:${me.x} y:${me.y}`)
 
   const board = boardHelpers.compute(request.body.board, request.body.you)
-
   let move = 'up'
+
+  // Check up
+  if (me.y != 0 && (board[me.x][me.y - 1] == 'f' || typeof board[me.x][me.y - 1] == 'undefined')) {
+    move = 'up'
+  } else if (me.x != board.length - 1 && (board[me.x + 1][me.y] == 'f' || typeof board[me.x + 1][me.y] == 'undefined')) {
+    move = 'right'
+  } else if (me.y != board[0].length - 1 && (board[me.x][me.y + 1] == 'f' || typeof board[me.x][me.y + 1] == 'undefined')) {
+    move = 'down'
+  } else if (me.x != 0 && (board[me.x - 1][me.y] == 'f' || typeof board[me.x - 1][me.y] == 'undefined')) {
+    move = 'left'
+  }
 
   console.log(`Move is:${move}`)
   return response.json({
