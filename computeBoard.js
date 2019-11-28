@@ -1,4 +1,4 @@
-const computeGameState = (boardJSON, me) => {
+module.exports = (boardJSON, me) => {
   let board = []
   console.log('Computing game state...')
   // Food pieces
@@ -32,8 +32,4 @@ const computeGameState = (boardJSON, me) => {
   }
 
   return board
-}
-
-module.exports = {
-  computeGameState,
 }
