@@ -5,19 +5,19 @@ class Position {
   }
 
   up () {
-    {x: me.x, y: me.y - 1}
+    {x: this.x, y: this.y - 1}
   }
 
   down () {
-    {x: me.x, y: me.y + 1}
+    {x: this.x, y: this.y + 1}
   }
 
   right () {
-    {x: me.x + 1, y: me.y}
+    {x: this.x + 1, y: this.y}
   }
 
   left () {
-    {x: me.x - 1, y: me.y}
+    {x: this.x - 1, y: this.y}
   }
 }
 
