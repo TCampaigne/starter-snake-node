@@ -7,7 +7,6 @@ module.exports = {
     console.log('Computing game state...')
     // Food pieces
     for (let food of boardJSON.food) {
-      board[food.x] ||= []
       board[food.x][food.y] = 'f'
     }
 
