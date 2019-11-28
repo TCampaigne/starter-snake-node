@@ -36,13 +36,12 @@ module.exports = {
 
 const logBoard = (board) => {
   // Print out board for debugging
-  for (let row of board) {
+  for (var i = board[0].length - 1; i >= 0; i--) {
     let rowOutput = ''
-    for (let space of row) {
-      const char = space || '.'
+    for (let column of board) {
+      const char = column[i] || '.'
       rowOutput += `${char} `
     }
-    
     console.log(rowOutput)
   }
 }
