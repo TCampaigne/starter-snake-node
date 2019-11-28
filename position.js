@@ -5,19 +5,19 @@ class Position {
     this.y = y
   }
 
-  up () {
+  get up () {
     return new Position(this.x, this.y - 1)
   }
 
-  down () {
+  get down () {
     return new Position(this.x, this.y + 1)
   }
 
-  right () {
+  get right () {
     return new Position(this.x + 1, this.y)
   }
 
-  left () {
+  get left () {
     return new Position(this.x - 1, this.y)
   }
 }

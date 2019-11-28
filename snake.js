@@ -6,20 +6,20 @@ class Snake {
     this.head = new Position(me.body[0].x, me.body[0].y)
   }
 
-  up () {
+  get up () {
     console.log(`Up is (${this.head.up.x},${this.head.up.y})`)
     return this.head.up
   }
 
-  down () {
+  get down () {
     return this.head.down
   }
 
-  right () {
+  get right () {
     return this.head.right
   }
 
-  left () {
+  get left () {
     return this.head.left
   }
 }
