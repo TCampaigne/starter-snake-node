@@ -1,8 +1,8 @@
 module.exports = {
   compute: (boardJSON, me) => {
     let board = new Array(boardJSON.width)
-    for (let column in board) {
-      board[column] = new Array(boardJSON.height)
+    for (var i = board.length - 1; i >= 0; i--) {
+      board[i] = new Array(boardJSON.height)
     }
     console.log('Computing game state...')
     logBoard(board)
