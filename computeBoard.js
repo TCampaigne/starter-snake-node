@@ -5,7 +5,6 @@ module.exports = {
       board[i] = new Array(boardJSON.height)
     }
     console.log('Computing game state...')
-    logBoard(board)
 
     // Food pieces
     for (let food of boardJSON.food) {
@@ -40,6 +39,7 @@ const logBoard = (board) => {
   for (let row of board) {
     let rowOutput = ''
     for (let space of row) {
+      const char = space || '.'
       rowOutput += `${space} `
     }
     
