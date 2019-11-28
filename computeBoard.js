@@ -29,6 +29,13 @@ module.exports = {
 
     return board
   }
+  isSafe: (proposed, board) => {
+    return proposed.x != -1
+      && proposed.y != -1
+      && proposed.x != board.length
+      && proposed.y != board[0].length
+      && (board[proposed.x][proposed.y] == 'f' || typeof board[proposed.x][proposed.y] == 'undefined')
+  }
 }
 
 const logBoard = (board) => {

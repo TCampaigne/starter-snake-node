@@ -50,13 +50,13 @@ app.post('/move', (request, response) => {
   let move = 'up'
 
   // Check up
-  if (me.y != 0 && (board[me.x][me.y - 1] == 'f' || typeof board[me.x][me.y - 1] == 'undefined')) {
+  if (boardHelpers.isSafe({x: me.x, y: me.y - 1})) {
     move = 'up'
-  } else if (me.x != board.length - 1 && (board[me.x + 1][me.y] == 'f' || typeof board[me.x + 1][me.y] == 'undefined')) {
+  } else if (boardHelpers.isSafe({x: me.x + 1, y: me.y})) {
     move = 'right'
-  } else if (me.y != board[0].length - 1 && (board[me.x][me.y + 1] == 'f' || typeof board[me.x][me.y + 1] == 'undefined')) {
+  } else if (boardHelpers.isSafe({x: me.x, y: me.y + 1})) {
     move = 'down'
-  } else if (me.x != 0 && (board[me.x - 1][me.y] == 'f' || typeof board[me.x - 1][me.y] == 'undefined')) {
+  } else if (boardHelpers.isSafe({x: me.x - 1, y: me.y})) {
     move = 'left'
   }
 
