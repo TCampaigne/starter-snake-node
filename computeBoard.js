@@ -56,6 +56,7 @@ class Board {
 
   isNotDeadend (proposed) {
     return true
+    return this.isSafe(proposed.up) || this.isSafe(proposed.down) || this.isSafe(proposed.left) || this.isSafe(proposed.right)
   }
 }
 
