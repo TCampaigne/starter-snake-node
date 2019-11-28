@@ -9,6 +9,10 @@ const {
   poweredByHandler
 } = require('./handlers.js')
 
+const {
+  computeBoardState
+} = require('./snake.js')
+
 // For deployment to Heroku, the port needs to be set using ENV, so
 // we check for the port number in process.env
 app.set('port', (process.env.PORT || 9001))
@@ -40,12 +44,13 @@ app.post('/move', (request, response) => {
     x: request.body.you.body[0].x,
     y: request.body.you.body[0].y
   }
+  console.log(`Current location is x:${snake_loc.x} y:${snake_loc.y}`)
 
-  console.log(`Current location is x:${snake_loc.x} y:${snake_loc.y}` )
+  const board = computeBoardState(request.body.board, request.body.you)
 
   let move = 'up'
 
-  console.log(`Move is:${move}` )
+  console.log(`Move is:${move}`)
   return response.json({
     move: move,
   })
