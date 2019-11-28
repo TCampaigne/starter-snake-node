@@ -9,7 +9,7 @@ const {
   poweredByHandler
 } = require('./handlers.js')
 
-const boardHelpers = require('./computeBoard.js')
+const Board = require('./computeBoard.js')
 
 // For deployment to Heroku, the port needs to be set using ENV, so
 // we check for the port number in process.env
@@ -46,17 +46,17 @@ app.post('/move', (request, response) => {
   }
   console.log(`Current location is x:${me.x} y:${me.y}`)
 
-  const board = boardHelpers.compute(request.body.board, request.body.you)
+  const board = new Board(request.body.board, request.body.you)
   let move = 'up'
 
   // Check up
-  if (boardHelpers.isSafe({x: me.x, y: me.y - 1})) {
+  if (board.isSafe({x: me.x, y: me.y - 1})) {
     move = 'up'
-  } else if (boardHelpers.isSafe({x: me.x + 1, y: me.y})) {
+  } else if (board.isSafe({x: me.x + 1, y: me.y})) {
     move = 'right'
-  } else if (boardHelpers.isSafe({x: me.x, y: me.y + 1})) {
+  } else if (board.isSafe({x: me.x, y: me.y + 1})) {
     move = 'down'
-  } else if (boardHelpers.isSafe({x: me.x - 1, y: me.y})) {
+  } else if (board.isSafe({x: me.x - 1, y: me.y})) {
     move = 'left'
   }
 
