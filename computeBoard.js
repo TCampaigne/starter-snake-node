@@ -28,7 +28,7 @@ module.exports = {
     logBoard(board)
 
     return board
-  }
+  },
   isSafe: (proposed, board) => {
     return proposed.x != -1
       && proposed.y != -1
