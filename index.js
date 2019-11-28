@@ -75,3 +75,8 @@ app.use(genericErrorHandler)
 app.listen(app.get('port'), () => {
   console.log('Server listening on port %s', app.get('port'))
 })
+
+process.on('uncaughtException', function(err) {
+  // handle the error safely
+  console.log(err)
+})
