@@ -40,13 +40,20 @@ class Board {
     }
   }
 
-  isOpen (proposed)  {
-    console.log(proposed)
+  isSafe (proposed) {
+    return isOpen(proposed) && isNotDeadend(proposed)
+  }
+
+  isOpen (proposed) {
     return proposed.x >= 0
       && proposed.y >= 0
       && proposed.x < this.width
       && proposed.y < this.height
       && (this.matrix[proposed.x][proposed.y] == 'f' || typeof this.matrix[proposed.x][proposed.y] == 'undefined')
+  }
+
+  isNotDeadend (proposed) {
+    return true
   }
 }
 

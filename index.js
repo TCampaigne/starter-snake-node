@@ -10,6 +10,7 @@ const {
 } = require('./handlers.js')
 
 const Board = require('./computeBoard.js')
+const Position = require('./position.js')
 
 // For deployment to Heroku, the port needs to be set using ENV, so
 // we check for the port number in process.env
@@ -40,9 +41,9 @@ app.post('/start', (request, response) => {
 // Handle POST request to '/move'
 app.post('/move', (request, response) => {
 
-  const me = {
-    x: request.body.you.body[0].x,
-    y: request.body.you.body[0].y
+  const me = new Position{
+    request.body.you.body[0].x,
+    request.body.you.body[0].y
   }
   console.log(`Current location is x:${me.x} y:${me.y}`)
 
@@ -51,13 +52,13 @@ app.post('/move', (request, response) => {
   let move = 'up'
 
   // Check up
-  if (board.isOpen({x: me.x, y: me.y - 1})) {
+  if (board.isOpen(me.up)) {
     move = 'up'
-  } else if (board.isOpen({x: me.x + 1, y: me.y})) {
+  } else if (board.isOpen(me.right)) {
     move = 'right'
-  } else if (board.isOpen({x: me.x, y: me.y + 1})) {
+  } else if (board.isOpen(me.down)) {
     move = 'down'
-  } else if (board.isOpen({x: me.x - 1, y: me.y})) {
+  } else if (board.isOpen(me.left)) {
     move = 'left'
   }
 
