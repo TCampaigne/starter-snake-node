@@ -5,14 +5,18 @@ module.exports = {
       board[column] = new Array(boardJSON.height)
     }
     console.log('Computing game state...')
+    console.log(board)
+
     // Food pieces
     for (let food of boardJSON.food) {
+      console.log(`Food piece at (${food.x},${food.y})`)
       board[food.x][food.y] = 'f'
     }
 
     // All snakes on board
     for (let snake of boardJSON.snakes) {
       for (let part of snake.body) {
+        console.log(`Snake piece at (${part.x},${part.y})`)
         board[part.x][part.y] = 's'
       }
       
