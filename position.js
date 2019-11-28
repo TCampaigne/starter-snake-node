@@ -1,24 +1,24 @@
-class Snake {
-  constructor(me) {
-    this.x = me.body[0].x
-    this.y = me.body[0].y
+class Position {
+  constructor(x, y) {
+    this.x = x
+    this.y = y
   }
 
   up () {
-    return {x: this.x, y: this.y - 1}
+    return new Position(this.x, this.y - 1)
   }
 
   down () {
-    return {x: this.x, y: this.y + 1}
+    return new Position(this.x, this.y + 1)
   }
 
   right () {
-    return {x: this.x + 1, y: this.y}
+    return new Position(this.x + 1, this.y)
   }
 
   left () {
-    return {x: this.x - 1, y: this.y}
+    return new Position(this.x - 1, this.y)
   }
 }
 
-module.exports = Snake
+module.exports = Position
