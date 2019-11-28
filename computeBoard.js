@@ -5,7 +5,7 @@ module.exports = {
       board[column] = new Array(boardJSON.height)
     }
     console.log('Computing game state...')
-    console.log(board)
+    logBoard(board)
 
     // Food pieces
     for (let food of boardJSON.food) {
@@ -29,16 +29,20 @@ module.exports = {
     } 
     board[me.body[0].x][me.body[0].y] = 'M'
 
-    // Print out board for debugging
-    for (let row of board) {
-      let rowOutput = ''
-      for (let space of row) {
-        rowOutput += `${space} `
-      }
-      
-      console.log(rowOutput)
-    }
+    logBoard(board)
 
     return board
+  }
+}
+
+const logBoard = (board) => {
+  // Print out board for debugging
+  for (let row of board) {
+    let rowOutput = ''
+    for (let space of row) {
+      rowOutput += `${space} `
+    }
+    
+    console.log(rowOutput)
   }
 }
