@@ -144,7 +144,7 @@ class Board {
       score = 0
     } else if (this.isFood(proposed)) {
       score = 200 + (5000 * ((100 - this.health) / 100) / Math.pow(this.distanceOf(proposed) - 1 || 1, 2))
-    } else if (this.distanceOf(proposed)) {
+    } else if (this.distanceOf(proposed) <= 6) {
       score = 200 / this.distanceOf(proposed)
     }
 
