@@ -142,7 +142,7 @@ class Board {
       score = -5000 / Math.pow((this.distanceOf(proposed) - 2) || 1, 2)
     } else if (!this.isValid(proposed)) {
       score = 0
-    } else if (this.isFood(proposed)) {
+    } else if (this.isFood(proposed) && this.distanceOf(proposed) < 3) {
       score = 50 + (1000 / Math.pow(this.distanceOf(proposed) - 1 || 1, 2)) + (5000 * ((100 - this.health) / 100))
     } else if (this.isOpen(proposed)) {
       score = 100 / Math.pow(this.distanceOf(proposed) - 1 || 1, 1.1)
