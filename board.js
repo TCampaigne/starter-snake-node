@@ -53,48 +53,39 @@ class Board {
 
   safetyScore (proposed) {
     let score = 0
-
     // Proposed spot is gauranteed loss
     if (!this.isValid(proposed)) {
-      score = 0
       return score
     }
 
-    if (this.isFood(proposed)) {
-      score = score + (100 * ((100 - this.health) / 100))
+    score += this.spaceScore(proposed)
+
+    score += this.spaceScore(proposed.up)
+    score += this.spaceScore(proposed.down)
+    score += this.spaceScore(proposed.left)
+    score += this.spaceScore(proposed.right)
+
+    score += this.spaceScore(proposed.upleft)
+    score += this.spaceScore(proposed.upright)
+    score += this.spaceScore(proposed.downleft)
+    score += this.spaceScore(proposed.downright)
+
+    return score
+  }
+
+  spaceScore (proposed) {
+    let score = 0
+    if (!this.isValid(proposed)) {
+      score = 0
+    } else if (this.isFood(proposed)) {
+      score = 100 + (100 * ((100 - this.health) / 100))
+    } else if (this.isEnemyHead(proposed)) {
+      score = -200
+    } else if (this.isOpen(proposed)) {
+      score = 100
     }
 
-    if (this.isValid(proposed.up)) {
-      score = score + 100;
-    }
-
-    if (this.isValid(proposed.down)) {
-      score = score + 100;
-    }
-
-    if (this.isValid(proposed.left)) {
-      score = score + 100;
-    }
-
-    if (this.isValid(proposed.right)) {
-      score = score + 100;
-    }
-
-    let enemies = 0
-    if (this.isEnemy(proposed.upleft)) {
-      enemies++
-    }
-    if (this.isEnemy(proposed.upright)) {
-      enemies++
-    }
-    if (this.isEnemy(proposed.downleft)) {
-      enemies++
-    }
-    if (this.isEnemy(proposed.downright)) {
-      enemies++
-    }
-
-    return score - (enemies*50)
+    return score
   }
 
   isValid (proposed) {
