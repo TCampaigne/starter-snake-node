@@ -24,10 +24,10 @@ class Board {
     this.scoreMatrix = new Array(this.width)
     for (var i = 0; i < this.width; i++) {
       this.scoreMatrix[i] = new Array(this.height).fill({score: 0, distance: 0})
-      this.logDistance()
       for (var j = 0; j < this.height; j++) {
         this.scoreMatrix[i][j].distance = Math.abs(this.mePos.x - i) + Math.abs(this.mePos.y - j)
       }
+      this.logDistance()
     }
 
     // Food pieces
