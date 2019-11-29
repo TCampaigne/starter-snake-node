@@ -49,19 +49,19 @@ class Board {
       return score
     }
 
-    if (this.isSafe(proposed).up) {
+    if (this.isSafe(proposed.up)) {
       score++
     }
 
-    if (this.isSafe(proposed).down) {
+    if (this.isSafe(proposed.do)wn) {
       score++
     }
 
-    if (this.isSafe(proposed).left) {
+    if (this.isSafe(proposed.le)ft) {
       score++
     }
 
-    if (this.isSafe(proposed).right) {
+    if (this.isSafe(proposed.ri)ght) {
       score++
     }
 
