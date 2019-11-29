@@ -25,8 +25,10 @@ class Board {
     for (var i = 0; i < this.width; i++) {
       this.scoreMatrix[i] = new Array(this.height).fill({score: 0, distance: 0})
       for (var j = 0; j < this.height; j++) {
+        console.log(Math.abs(this.mePos.x - i) + Math.abs(this.mePos.y - j))
         this.scoreMatrix[i][j].distance = Math.abs(this.mePos.x - i) + Math.abs(this.mePos.y - j)
       }
+      console.log(this.scoreMatrix[i])
     }
 
     this.logDistance()
