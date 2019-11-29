@@ -80,7 +80,7 @@ class Board {
     score += this.safetyScore(proposed.left, distance) * distanceFactor
     score += this.safetyScore(proposed.right, distance) * distanceFactor
 
-    scoreMatrix[proposed.x][proposed.y] = score
+    this.scoreMatrix[proposed.x][proposed.y] = score
     return score
   }
 
