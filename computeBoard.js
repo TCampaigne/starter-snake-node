@@ -44,46 +44,61 @@ class Board {
     let score = 0
 
     // Proposed spot is gauranteed loss
-    if (!this.isSafe(proposed)) {
+    if (!this.isValid(proposed)) {
       score = 0
       return score
     }
 
-    if (this.isSafe(proposed.up)) {
+    if (this.isFood(proposed)) {
       score++
     }
 
-    if (this.isSafe(proposed.down)) {
+    if (this.isValid(proposed.up)) {
       score++
     }
 
-    if (this.isSafe(proposed.left)) {
+    if (this.isValid(proposed.down)) {
       score++
     }
 
-    if (this.isSafe(proposed.right)) {
+    if (this.isValid(proposed.left)) {
+      score++
+    }
+
+    if (this.isValid(proposed.right)) {
       score++
     }
 
     return score
   }
 
-  isSafe (proposed) {
-    const safe = this.isOpen(proposed) && this.isNotDeadend(proposed)
+  isValid (proposed) {
+    const safe = this.isInBounds && this.isSafe(proposed) && this.isNotDeadend(proposed)
     // console.log(`Checking (${proposed.x},${proposed.y}) - ${safe}`)
     return safe
   }
 
-  isOpen (proposed) {
+  isInBounds (proposed) {
     return proposed.x >= 0
       && proposed.y >= 0
       && proposed.x < this.width
       && proposed.y < this.height
-      && (this.matrix[proposed.x][proposed.y] == 'f' || typeof this.matrix[proposed.x][proposed.y] == 'undefined')
+  }
+
+  isSafe (proposed) {
+    return this.isOpen(proposed) || this.isFood(proposed)
+  }
+
+  isOpen (proposed) {
+    return typeof this.matrix[proposed.x][proposed.y] == 'undefined'
   }
 
   isNotDeadend (proposed) {
     return this.isOpen(proposed.up) || this.isOpen(proposed.down) || this.isOpen(proposed.left) || this.isOpen(proposed.right)
+  }
+
+  isFood (proposed) {
+    return this.matrix[proposed.x][proposed.y] == 'f'
   }
 }
 
