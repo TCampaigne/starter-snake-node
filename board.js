@@ -1,3 +1,4 @@
+const Position = require('./position.js')
 const BoardChars = {
   OPEN: '.',
   FOOD: 'f',
@@ -13,6 +14,7 @@ class Board {
     this.width = json.width
     this.height = json.height
     this.health = me.health
+    this.mePos = new Position(me.body[0].x, me.body[0].y)
 
     this.matrix = new Array(json.width).fill(BoardChars.OPEN)
     for (var i = this.matrix.length - 1; i >= 0; i--) {
@@ -67,22 +69,22 @@ class Board {
     }
   }
 
-  safetyScore (proposed, distance = 0) {
+  safetyScore (proposed) {
     let score = 0
+    const distance = Math.max(Math.abs(this.mePos.x - proposed.x), Math.abs(this.mePos.y - proposed.y))
     // Proposed spot is gauranteed loss
-    if (distance > 4 || !this.isValid(proposed)) {
-      return score
+    if (distance > 4 || !this.isValid(proposed) || this.scoreMatrix[proposed.x][proposed.y] > 0) {
+      return this.scoreMatrix[proposed.x][proposed.y]
     }
 
-    distance++
     score += this.spaceScore(proposed)
 
     const distanceFactor = 5 / (5 + distance)
 
-    score += this.safetyScore(proposed.up, distance) * distanceFactor
-    score += this.safetyScore(proposed.down, distance) * distanceFactor
-    score += this.safetyScore(proposed.left, distance) * distanceFactor
-    score += this.safetyScore(proposed.right, distance) * distanceFactor
+    score += this.safetyScore(proposed.up) * distanceFactor
+    score += this.safetyScore(proposed.down) * distanceFactor
+    score += this.safetyScore(proposed.left) * distanceFactor
+    score += this.safetyScore(proposed.right) * distanceFactor
 
     this.scoreMatrix[proposed.x][proposed.y] = score
     return score
