@@ -97,7 +97,11 @@ class Board {
       return this.scoreMatrix[proposed.x][proposed.y]
     }
 
-    score += this.spaceScore(proposed)
+    const proposedSpaceScore = this.spaceScore(proposed)
+    score += proposedSpaceScore
+    if (proposedSpaceScore <= 0) {
+      return score
+    }
 
     const distanceFactor = 5 / (5 + this.distanceOf(proposed))
 
