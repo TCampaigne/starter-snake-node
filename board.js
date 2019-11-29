@@ -30,7 +30,6 @@ class Board {
     for (var i = 0; i < this.width; i++) {
       this.distanceMatrix[i] = new Array(this.height).fill(0)
       for (var j = 0; j < this.height; j++) {
-        console.log(Math.abs(this.mePos.x - i) + Math.abs(this.mePos.y - j))
         this.distanceMatrix[i][j] = Math.abs(this.mePos.x - i) + Math.abs(this.mePos.y - j)
       }
     }
@@ -135,6 +134,9 @@ class Board {
   }
 
   distanceOf (proposed) {
+    console.log("distancing")
+    console.log(proposed.x)
+    console.log(proposed.y)
     return this.distanceMatrix[proposed.x][proposed.y]
   }
 
