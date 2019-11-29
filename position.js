@@ -19,6 +19,22 @@ class Position {
   get left () {
     return new Position(this.x - 1, this.y)
   }
+
+  get upleft () {
+    return new Position(this.x - 1, this.y - 1)
+  }
+
+  get downleft () {
+    return new Position(this.x - 1, this.y + 1)
+  }
+
+  get upright () {
+    return new Position(this.x + 1, this.y - 1)
+  }
+
+  get downright () {
+    return new Position(this.x + 1, this.y + 1)
+  }
 }
 
 module.exports = Position
