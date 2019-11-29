@@ -73,9 +73,13 @@ class Board {
   }
 
   isValid (proposed) {
-    const safe = this.isInBounds && this.isSafe(proposed) && this.isNotDeadend(proposed)
+    const safe = this.isSafe(proposed) && this.isNotDeadend(proposed)
     // console.log(`Checking (${proposed.x},${proposed.y}) - ${safe}`)
     return safe
+  }
+
+  isSafe (proposed) {
+    return isInBounds && (this.isOpen(proposed) || this.isFood(proposed))
   }
 
   isInBounds (proposed) {
@@ -85,20 +89,16 @@ class Board {
       && proposed.y < this.height
   }
 
-  isSafe (proposed) {
-    return this.isOpen(proposed) || this.isFood(proposed)
-  }
-
   isOpen (proposed) {
     return this.matrix[proposed.x] && typeof this.matrix[proposed.x][proposed.y] == 'undefined'
   }
-
-  isNotDeadend (proposed) {
-    return this.isValid(proposed.up) || this.isValid(proposed.down) || this.isValid(proposed.left) || this.isValid(proposed.right)
-  }
-
+  
   isFood (proposed) {
     return this.matrix[proposed.x] && this.matrix[proposed.x][proposed.y] == 'f'
+  }
+
+  isNotDeadend (proposed) {
+    return this.isSafe(proposed.up) || this.isSafe(proposed.down) || this.isSafe(proposed.left) || this.isSafe(proposed.right)
   }
 }
 
