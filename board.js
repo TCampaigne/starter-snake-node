@@ -115,19 +115,17 @@ class Board {
       return score
     }
 
-    const distanceFactor = 10 / (10 + this.distanceOf(proposed))
-
     if (this.distanceOf(proposed.up) > this.distanceOf(proposed)) {
-      score += this.safetyScore(proposed.up) * distanceFactor
+      score += this.safetyScore(proposed.up)
     }
     if (this.distanceOf(proposed.down) > this.distanceOf(proposed)) {
-      score += this.safetyScore(proposed.down) * distanceFactor
+      score += this.safetyScore(proposed.down)
     }
     if (this.distanceOf(proposed.left) > this.distanceOf(proposed)) {
-      score += this.safetyScore(proposed.left) * distanceFactor
+      score += this.safetyScore(proposed.left)
     }
     if (this.distanceOf(proposed.right) > this.distanceOf(proposed)) {
-      score += this.safetyScore(proposed.right) * distanceFactor
+      score += this.safetyScore(proposed.right)
     }
 
     if (this.distanceOf(proposed) == 1 && score <= 0 && this.isValid(proposed)) {
