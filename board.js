@@ -103,7 +103,7 @@ class Board {
       return score
     }
 
-    const distanceFactor = 5 / (5 + this.distanceOf(proposed))
+    const distanceFactor = 10 / (10 + this.distanceOf(proposed))
 
     if (this.distanceOf(proposed.up) > this.distanceOf(proposed)) {
       score += this.safetyScore(proposed.up) * distanceFactor
