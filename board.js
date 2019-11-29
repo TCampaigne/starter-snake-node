@@ -29,7 +29,7 @@ class Board {
       }
     }
 
-    logDistance()
+    this.logDistance()
 
     // Food pieces
     for (let food of json.food) {
