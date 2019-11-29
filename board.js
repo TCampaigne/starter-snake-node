@@ -73,7 +73,7 @@ class Board {
       let rowOutput = ''
       for (let column of this.scoreMatrix) {
         const score = Math.round(column[i]).toString()
-        rowOutput += `${score + '.'.repeat(5 - score.length)} `
+        rowOutput += `${score + '.'.repeat(6 - score.length)} `
       }
       console.log(rowOutput)
     }
