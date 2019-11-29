@@ -118,6 +118,10 @@ class Board {
       score += this.safetyScore(proposed.right) * distanceFactor
     }
 
+    if (this.distanceOf(proposed) = 1 && score <= 0 && this.isValid(proposed)) {
+      score = 1
+    }
+
     this.scoreMatrix[proposed.x][proposed.y] = score
     return score
   }
@@ -125,11 +129,11 @@ class Board {
   spaceScore (proposed) {
     let score = 0
     if (this.isEnemy(proposed)) {
-      score = -500
+      score = -1000
     } else if (!this.isValid(proposed)) {
       score = 0
     } else if (this.isFood(proposed)) {
-      score = 100 + (200 * ((100 - this.health) / 100)^(100 - this.health))
+      score = 100 + (1000 * ((100 - this.health) / 100))
     } else if (this.isOpen(proposed)) {
       score = 100
     }
