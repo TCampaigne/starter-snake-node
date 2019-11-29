@@ -74,9 +74,9 @@ class Board {
 
   safetyScore (proposed) {
     let score = 0
-    console.log(`Scoring (${proposed.x},${proposed.y}) at ${distanceOf(proposed)}`)
+    console.log(`Scoring (${proposed.x},${proposed.y}) at ${this.distanceOf(proposed)}`)
     // Proposed spot is gauranteed loss
-    if (distanceOf(proposed) > 4 || !this.isValid(proposed)) {
+    if (this.distanceOf(proposed) > 4 || !this.isValid(proposed)) {
       return 0
     } else if (this.scoreMatrix[proposed.x][proposed.y].score != 0) {
       return this.scoreMatrix[proposed.x][proposed.y].score
@@ -84,18 +84,18 @@ class Board {
 
     score += this.spaceScore(proposed)
 
-    const distanceFactor = 5 / (5 + distanceOf(proposed))
+    const distanceFactor = 5 / (5 + this.distanceOf(proposed))
 
-    if (distanceOf(proposed.up) > distanceOf(proposed)) {
+    if (this.distanceOf(proposed.up) > this.distanceOf(proposed)) {
       score += this.safetyScore(proposed.up) * distanceFactor
     }
-    if (distanceOf(proposed.down) > distanceOf(proposed)) {
+    if (this.distanceOf(proposed.down) > this.distanceOf(proposed)) {
       score += this.safetyScore(proposed.down) * distanceFactor
     }
-    if (distanceOf(proposed.left) > distanceOf(proposed)) {
+    if (this.distanceOf(proposed.left) > this.distanceOf(proposed)) {
       score += this.safetyScore(proposed.left) * distanceFactor
     }
-    if (distanceOf(proposed.right) > distanceOf(proposed)) {
+    if (this.distanceOf(proposed.right) > this.distanceOf(proposed)) {
       score += this.safetyScore(proposed.right) * distanceFactor
     }
 
