@@ -56,7 +56,7 @@ app.post('/move', (request, response) => {
     right: board.safetyScore(me.right),
   }
 
-  console.log(scores)
+  board.logScores()
 
   move = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b)
 

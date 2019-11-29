@@ -18,6 +18,7 @@ class Board {
     for (var i = this.matrix.length - 1; i >= 0; i--) {
       this.matrix[i] = new Array(json.height).fill(BoardChars.OPEN)
     }
+    this.scoreMatrix = matrix
 
     // Food pieces
     for (let food of json.food) {
@@ -51,6 +52,17 @@ class Board {
     }
   }
 
+  logScores () {
+    for (var i = 0; i < this.scoreMatrix[0].length; i++) {
+      let rowOutput = ''
+      for (let column of this.scoreMatrix) {
+        const score = Math.round(column[i]).toString()
+        rowOutput += `${score + '.'.repeat(4 - score.length)} `
+      }
+      console.log(rowOutput)
+    }
+  }
+
   safetyScore (proposed, distance = 0) {
     let score = 0
     // Proposed spot is gauranteed loss
@@ -68,6 +80,7 @@ class Board {
     score += this.safetyScore(proposed.left, distance) * distanceFactor
     score += this.safetyScore(proposed.right, distance) * distanceFactor
 
+    scoreMatrix[proposed.x][proposed.y] = score
     return score
   }
 
