@@ -44,24 +44,24 @@ class Board {
     let score = 0
 
     // Proposed spot is gauranteed loss
-    if (!isSafe(proposed)) {
+    if (!this.isSafe(proposed)) {
       score = 0
       return score
     }
 
-    if (isSafe(proposed).up) {
+    if (this.isSafe(proposed).up) {
       score++
     }
 
-    if (isSafe(proposed).down) {
+    if (this.isSafe(proposed).down) {
       score++
     }
 
-    if (isSafe(proposed).left) {
+    if (this.isSafe(proposed).left) {
       score++
     }
 
-    if (isSafe(proposed).right) {
+    if (this.isSafe(proposed).right) {
       score++
     }
   }
