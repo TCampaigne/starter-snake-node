@@ -79,7 +79,7 @@ class Board {
   }
 
   isSafe (proposed) {
-    return isInBounds && (this.isOpen(proposed) || this.isFood(proposed))
+    return this.isInBounds(proposed) && (this.isOpen(proposed) || this.isFood(proposed))
   }
 
   isInBounds (proposed) {
@@ -92,7 +92,7 @@ class Board {
   isOpen (proposed) {
     return this.matrix[proposed.x] && typeof this.matrix[proposed.x][proposed.y] == 'undefined'
   }
-  
+
   isFood (proposed) {
     return this.matrix[proposed.x] && this.matrix[proposed.x][proposed.y] == 'f'
   }
