@@ -61,12 +61,12 @@ class Board {
     distance++
     score += this.spaceScore(proposed)
 
-    const distanceFactor = distance/2
+    const distanceFactor = 10 / (10 + distance)
 
-    score += this.safetyScore(proposed.up, distance) / distanceFactor
-    score += this.safetyScore(proposed.down, distance) / distanceFactor
-    score += this.safetyScore(proposed.left, distance) / distanceFactor
-    score += this.safetyScore(proposed.right, distance) / distanceFactor
+    score += this.safetyScore(proposed.up, distance) * distanceFactor
+    score += this.safetyScore(proposed.down, distance) * distanceFactor
+    score += this.safetyScore(proposed.left, distance) * distanceFactor
+    score += this.safetyScore(proposed.right, distance) * distanceFactor
 
     return score
   }
@@ -76,7 +76,7 @@ class Board {
     if (!this.isValid(proposed)) {
       score = 0
     } else if (this.isFood(proposed)) {
-      score = 100 + (100 * ((100 - this.health) / 100))
+      score = 100 + (200 * ((100 - this.health) / 100))
     } else if (this.isEnemy(proposed)) {
       score = -1000
     } else if (this.isOpen(proposed)) {
