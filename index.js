@@ -9,7 +9,7 @@ const {
   poweredByHandler
 } = require('./handlers.js')
 
-const Board = require('./computeBoard.js')
+const Board = require('./board.js')
 const Position = require('./position.js')
 const Snake = require('./snake.js')
 
