@@ -18,7 +18,11 @@ class Board {
     for (var i = this.matrix.length - 1; i >= 0; i--) {
       this.matrix[i] = new Array(json.height).fill(BoardChars.OPEN)
     }
-    this.scoreMatrix = this.matrix
+
+    this.scoreMatrix = new Array(json.width).fill(0)
+    for (var i = this.scoreMatrix.length - 1; i >= 0; i--) {
+      this.scoreMatrix[i] = new Array(json.height).fill(0)
+    }
 
     // Food pieces
     for (let food of json.food) {
