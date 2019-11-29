@@ -74,10 +74,11 @@ class Board {
     const distance = Math.max(Math.abs(this.mePos.x - proposed.x), Math.abs(this.mePos.y - proposed.y))
     console.log(`Scoring (${proposed.x},${proposed.y}) at ${distance}`)
     // Proposed spot is gauranteed loss
-    if (distance > 2 || !this.isValid(proposed) || this.scoreMatrix[proposed.x][proposed.y] > 0) {
+    if (distance > 4 || !this.isValid(proposed) || (this.scoreMatrix[proposed.x][proposed.y] && this.scoreMatrix[proposed.x][proposed.y] > 0) {
       return this.scoreMatrix[proposed.x][proposed.y]
     }
 
+    this.scoreMatrix[proposed.x][proposed.y] = undefined
     score += this.spaceScore(proposed)
 
     const distanceFactor = 5 / (5 + distance)
