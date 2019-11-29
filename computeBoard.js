@@ -40,6 +40,32 @@ class Board {
     }
   }
 
+  safetyScore (proposed) {
+    let score = 0
+
+    // Proposed spot is gauranteed loss
+    if (!isSafe(proposed)) {
+      score = 0
+      return score
+    }
+
+    if (isSafe(proposed).up) {
+      score++
+    }
+
+    if (isSafe(proposed).down) {
+      score++
+    }
+
+    if (isSafe(proposed).left) {
+      score++
+    }
+
+    if (isSafe(proposed).right) {
+      score++
+    }
+  }
+
   isSafe (proposed) {
     const safe = this.isOpen(proposed) && this.isNotDeadend(proposed)
     console.log(`Checking (${proposed.x},${proposed.y}) - ${safe}`)

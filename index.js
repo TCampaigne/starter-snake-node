@@ -49,16 +49,14 @@ app.post('/move', (request, response) => {
   board.log()
   let move = 'up'
 
-  // Check up
-  if (board.isSafe(me.up)) {
-    move = 'up'
-  } else if (board.isSafe(me.right)) {
-    move = 'right'
-  } else if (board.isSafe(me.down)) {
-    move = 'down'
-  } else if (board.isSafe(me.left)) {
-    move = 'left'
+  const moves = {
+    up: board.safetyScore(me.up),
+    down: board.safetyScore(me.down),
+    left: board.safetyScore(me.left),
+    right: board.safetyScore(me.right),
   }
+
+  move = Object.keys(moves).reduce((a, b) => obj[a] > obj[b] ? a : b)
 
   console.log(`Move is:${move}`)
   return response.json({
