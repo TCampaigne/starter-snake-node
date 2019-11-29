@@ -61,10 +61,12 @@ class Board {
     distance++
     score += this.spaceScore(proposed)
 
-    score += this.safetyScore(proposed.up, distance) / distance
-    score += this.safetyScore(proposed.down, distance) / distance
-    score += this.safetyScore(proposed.left, distance) / distance
-    score += this.safetyScore(proposed.right, distance) / distance
+    const distanceFactor = distance/2
+
+    score += this.safetyScore(proposed.up, distance) / distanceFactor
+    score += this.safetyScore(proposed.down, distance) / distanceFactor
+    score += this.safetyScore(proposed.left, distance) / distanceFactor
+    score += this.safetyScore(proposed.right, distance) / distanceFactor
 
     return score
   }
