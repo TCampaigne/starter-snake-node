@@ -133,7 +133,7 @@ class Board {
     } else if (!this.isValid(proposed)) {
       score = 0
     } else if (this.isFood(proposed)) {
-      score = 100 + (1000 * ((100 - this.health) / 100))
+      score = 100 + ((10000 * ((100 - this.health) / 100)) / (this.distanceOf(proposed))^10)
     } else if (this.isOpen(proposed)) {
       score = 100
     }
