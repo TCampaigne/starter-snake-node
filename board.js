@@ -24,8 +24,8 @@ class Board {
     this.scoreMatrix = new Array(json.width)
     for (var i = this.scoreMatrix.length - 1; i >= 0; i--) {
       this.scoreMatrix[i] = new Array(json.height).fill({score: 0, distance: 0})
-      for (var j = scoreMatrix.length - 1; j >= 0; j--) {
-        scoreMatrix[i][j].distance = Math.abs(this.mePos.x - i) + Math.abs(this.mePos.y - j)
+      for (var j = this.scoreMatrix.length - 1; j >= 0; j--) {
+        this.scoreMatrix[i][j].distance = Math.abs(this.mePos.x - i) + Math.abs(this.mePos.y - j)
       }
     }
 
