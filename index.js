@@ -56,7 +56,7 @@ app.post('/move', (request, response) => {
     right: board.safetyScore(me.right),
   }
 
-  move = Object.keys(moves).reduce((a, b) => obj[a] > obj[b] ? a : b)
+  move = Object.keys(moves).reduce((a, b) => moves[a] > moves[b] ? a : b)
 
   console.log(`Move is:${move}`)
   return response.json({
