@@ -1,6 +1,5 @@
 class Position {
   constructor(x, y) {
-    console.log(`Defining position (${x},${y})`)
     this.x = x
     this.y = y
   }
