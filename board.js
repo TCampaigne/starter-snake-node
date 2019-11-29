@@ -60,15 +60,10 @@ class Board {
 
     score += this.spaceScore(proposed)
 
-    score += this.spaceScore(proposed.up) / 2
-    score += this.spaceScore(proposed.down) / 2
-    score += this.spaceScore(proposed.left) / 2
-    score += this.spaceScore(proposed.right) / 2
-
-    score += this.spaceScore(proposed.upleft) / 4
-    score += this.spaceScore(proposed.upright) / 4
-    score += this.spaceScore(proposed.downleft) / 4
-    score += this.spaceScore(proposed.downright) / 4
+    score += this.safetyScore(proposed.up) / 2
+    score += this.safetyScore(proposed.down) / 2
+    score += this.safetyScore(proposed.left) / 2
+    score += this.safetyScore(proposed.right) / 2
 
     return score
   }
