@@ -26,8 +26,8 @@ class Board {
       this.scoreMatrix[i] = new Array(this.height).fill({score: 0, distance: 0})
       for (var j = 0; j < this.height; j++) {
         this.scoreMatrix[i][j].distance = Math.abs(this.mePos.x - i) + Math.abs(this.mePos.y - j)
+        console.log(`My position (${this.mePos.x},${this.mePos.y}) i is ${i}, j is ${j} and distance is ${this.scoreMatrix[i][j].distance}`)
       }
-      this.logDistance()
     }
 
     // Food pieces
