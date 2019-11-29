@@ -23,12 +23,17 @@ class Board {
 
     this.scoreMatrix = new Array(this.width)
     for (var i = 0; i < this.width; i++) {
-      this.scoreMatrix[i] = new Array(this.height).fill({score: 0, distance: 0})
+      this.scoreMatrix[i] = new Array(this.height).fill(0)
+    }
+
+    this.distanceMatrix = new Array(this.width)
+    for (var i = 0; i < this.width; i++) {
+      this.distanceMatrix[i] = new Array(this.height).fill(0)
       for (var j = 0; j < this.height; j++) {
         console.log(Math.abs(this.mePos.x - i) + Math.abs(this.mePos.y - j))
-        this.scoreMatrix[i][j].distance = Math.abs(this.mePos.x - i) + Math.abs(this.mePos.y - j)
+        this.distanceMatrix[i][j] = Math.abs(this.mePos.x - i) + Math.abs(this.mePos.y - j)
       }
-      console.log(this.scoreMatrix[i])
+      console.log(this.distanceMatrix[i])
     }
 
     this.logDistance()
@@ -69,7 +74,7 @@ class Board {
     for (var i = 0; i < this.scoreMatrix[0].length; i++) {
       let rowOutput = ''
       for (let column of this.scoreMatrix) {
-        const score = Math.round(column[i].score).toString()
+        const score = Math.round(column[i]).toString()
         rowOutput += `${score + '.'.repeat(4 - score.length)} `
       }
       console.log(rowOutput)
@@ -77,10 +82,10 @@ class Board {
   }
 
   logDistance () {
-    for (var i = 0; i < this.scoreMatrix[0].length; i++) {
+    for (var i = 0; i < this.distanceMatrix[0].length; i++) {
       let rowOutput = ''
-      for (let column of this.scoreMatrix) {
-        const distance = column[i].distance
+      for (let column of this.distanceMatrix) {
+        const distance = column[i]
         rowOutput += `${distance} `
       }
       console.log(rowOutput)
@@ -93,8 +98,8 @@ class Board {
     // Proposed spot is gauranteed loss
     if (this.distanceOf(proposed) > 4 || !this.isValid(proposed)) {
       return 0
-    } else if (this.scoreMatrix[proposed.x][proposed.y].score != 0) {
-      return this.scoreMatrix[proposed.x][proposed.y].score
+    } else if (this.scoreMatrix[proposed.x][proposed.y] != 0) {
+      return this.scoreMatrix[proposed.x][proposed.y]
     }
 
     score += this.spaceScore(proposed)
@@ -134,7 +139,7 @@ class Board {
   }
 
   distanceOf (proposed) {
-    return this.scoreMatrix[proposed.x][proposed.y].distance
+    return this.distanceMatrix[proposed.x][proposed.y]
   }
 
   isValid (proposed) {
