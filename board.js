@@ -138,13 +138,13 @@ class Board {
 
   spaceScore (proposed) {
     let score = 0
-    if (this.isEnemy(proposed) && this.distanceOf(proposed) < 3) {
+    if (this.isEnemy(proposed) && this.distanceOf(proposed) <= 3) {
       score = -50000 / Math.pow((this.distanceOf(proposed) - 2) || 1, 10)
     } else if (!this.isValid(proposed)) {
       score = 0
     } else if (this.isFood(proposed)) {
       score = 200 + (5000 * ((100 - this.health) / 100) / Math.pow(this.distanceOf(proposed) - 1 || 1, 2))
-    } else if (this.distanceOf(proposed) < 5) {
+    } else if (this.distanceOf(proposed) <= 5) {
       score = 200 / this.distanceOf(proposed)
     }
 
