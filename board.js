@@ -54,7 +54,7 @@ class Board {
   safetyScore (proposed, distance = 0) {
     let score = 0
     // Proposed spot is gauranteed loss
-    if (distance > 6 || !this.isValid(proposed)) {
+    if (distance > 4 || !this.isValid(proposed)) {
       return score
     }
 
@@ -76,7 +76,7 @@ class Board {
     if (!this.isValid(proposed)) {
       score = 0
     } else if (this.isFood(proposed)) {
-      score = 100 + (200 * ((100 - this.health) / 100))
+      score = (200 * ((100 - this.health) / 100))
     } else if (this.isEnemy(proposed)) {
       score = -1000
     } else if (this.isOpen(proposed)) {
