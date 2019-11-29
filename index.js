@@ -58,6 +58,8 @@ app.post('/move', (request, response) => {
 
   board.logScores()
 
+  console.log(scores)
+
   move = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b)
 
   console.log(`Move is:${move}`)
