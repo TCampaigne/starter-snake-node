@@ -73,7 +73,7 @@ class Board {
     let score = 0
     const distance = Math.max(Math.abs(this.mePos.x - proposed.x), Math.abs(this.mePos.y - proposed.y))
     // Proposed spot is gauranteed loss
-    if (distance > 4 || !this.isValid(proposed) || this.scoreMatrix[proposed.x][proposed.y] > 0) {
+    if (distance > 2 || !this.isValid(proposed) || this.scoreMatrix[proposed.x][proposed.y] > 0) {
       return this.scoreMatrix[proposed.x][proposed.y]
     }
 
