@@ -64,11 +64,13 @@ class Board {
     if (this.isSafe(proposed).right) {
       score++
     }
+
+    return score
   }
 
   isSafe (proposed) {
     const safe = this.isOpen(proposed) && this.isNotDeadend(proposed)
-    console.log(`Checking (${proposed.x},${proposed.y}) - ${safe}`)
+    // console.log(`Checking (${proposed.x},${proposed.y}) - ${safe}`)
     return safe
   }
 
