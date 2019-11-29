@@ -72,6 +72,17 @@ class Board {
     }
   }
 
+  logDistance () {
+    for (var i = 0; i < this.scoreMatrix[0].length; i++) {
+      let rowOutput = ''
+      for (let column of this.scoreMatrix) {
+        const distance = column[i].distance
+        rowOutput += `${distance} `
+      }
+      console.log(rowOutput)
+    }
+  }
+
   safetyScore (proposed) {
     let score = 0
     console.log(`Scoring (${proposed.x},${proposed.y}) at ${this.distanceOf(proposed)}`)
