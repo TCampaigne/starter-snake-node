@@ -33,10 +33,7 @@ class Board {
         console.log(Math.abs(this.mePos.x - i) + Math.abs(this.mePos.y - j))
         this.distanceMatrix[i][j] = Math.abs(this.mePos.x - i) + Math.abs(this.mePos.y - j)
       }
-      console.log(this.distanceMatrix[i])
     }
-
-    this.logDistance()
 
     // Food pieces
     for (let food of json.food) {
@@ -94,9 +91,8 @@ class Board {
 
   safetyScore (proposed) {
     let score = 0
-    console.log(`Scoring (${proposed.x},${proposed.y}) at ${this.distanceOf(proposed)}`)
     // Proposed spot is gauranteed loss
-    if (this.distanceOf(proposed) > 4 || !this.isValid(proposed)) {
+    if (!this.isValid(proposed) || this.distanceOf(proposed) > 4) {
       return 0
     } else if (this.scoreMatrix[proposed.x][proposed.y] != 0) {
       return this.scoreMatrix[proposed.x][proposed.y]
