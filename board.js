@@ -91,7 +91,7 @@ class Board {
   safetyScore (proposed) {
     let score = 0
     // Proposed spot is gauranteed loss
-    if (!this.isValid(proposed) || this.distanceOf(proposed) > 6) {
+    if (!this.isInBounds(proposed)) {
       return 0
     } else if (this.scoreMatrix[proposed.x][proposed.y] != 0) {
       return this.scoreMatrix[proposed.x][proposed.y]
