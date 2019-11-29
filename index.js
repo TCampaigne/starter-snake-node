@@ -56,7 +56,6 @@ app.post('/move', (request, response) => {
     right: board.safetyScore(me.right),
   }
 
-  board.logDistance()
   board.logScores()
 
   move = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b)
