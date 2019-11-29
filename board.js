@@ -72,8 +72,18 @@ class Board {
     for (var i = 0; i < this.scoreMatrix[0].length; i++) {
       let rowOutput = ''
       for (let column of this.scoreMatrix) {
-        const score = Math.round(column[i]).toString()
-        rowOutput += `${score + '.'.repeat(6 - score.length)} `
+        let score = 0
+        if (column[i] > 1000) {
+          score = Math.round(column[i] / 1000).toString() + 'k'
+        } else {
+          score = Math.round(column[i]).toString()
+        }
+        try {
+          rowOutput += `${score + '.'.repeat(5 - score.length)} `
+        } catch(err) {
+          score = 'ERR'
+          rowOutput += `${score + '.'.repeat(5 - score.length)} `
+        }
       }
       console.log(rowOutput)
     }
