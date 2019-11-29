@@ -51,19 +51,19 @@ class Board {
     }
   }
 
-  safetyScore (proposed) {
+  safetyScore (proposed, distance = 0) {
     let score = 0
     // Proposed spot is gauranteed loss
-    if (!this.isValid(proposed)) {
+    if (distance > 5 || !this.isValid(proposed)) {
       return score
     }
 
     score += this.spaceScore(proposed)
 
-    score += this.safetyScore(proposed.up) / 2
-    score += this.safetyScore(proposed.down) / 2
-    score += this.safetyScore(proposed.left) / 2
-    score += this.safetyScore(proposed.right) / 2
+    score += this.safetyScore(proposed.up, distance + 1) / 2
+    score += this.safetyScore(proposed.down, distance + 1) / 2
+    score += this.safetyScore(proposed.left, distance + 1) / 2
+    score += this.safetyScore(proposed.right, distance + 1) / 2
 
     return score
   }
