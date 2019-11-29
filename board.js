@@ -30,7 +30,7 @@ class Board {
         this.matrix[part.x][part.y] = BoardChars.ENEMYBODY
       }
       
-      this.matrix[snake.body[0].x][snake.body[0].y] = BoardChars.ENEMYBODY
+      this.matrix[snake.body[0].x][snake.body[0].y] = BoardChars.ENEMYHEAD
     }
 
     // Label where I am
@@ -60,15 +60,15 @@ class Board {
 
     score += this.spaceScore(proposed)
 
-    score += this.spaceScore(proposed.up)
-    score += this.spaceScore(proposed.down)
-    score += this.spaceScore(proposed.left)
-    score += this.spaceScore(proposed.right)
+    score += this.spaceScore(proposed.up) / 2
+    score += this.spaceScore(proposed.down) / 2
+    score += this.spaceScore(proposed.left) / 2
+    score += this.spaceScore(proposed.right) / 2
 
-    score += this.spaceScore(proposed.upleft)
-    score += this.spaceScore(proposed.upright)
-    score += this.spaceScore(proposed.downleft)
-    score += this.spaceScore(proposed.downright)
+    score += this.spaceScore(proposed.upleft) / 4
+    score += this.spaceScore(proposed.upright) / 4
+    score += this.spaceScore(proposed.downleft) / 4
+    score += this.spaceScore(proposed.downright) / 4
 
     return score
   }
