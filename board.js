@@ -16,14 +16,17 @@ class Board {
     this.health = me.health
     this.mePos = new Position(me.body[0].x, me.body[0].y)
 
-    this.matrix = new Array(json.width).fill(BoardChars.OPEN)
+    this.matrix = new Array(json.width)
     for (var i = this.matrix.length - 1; i >= 0; i--) {
       this.matrix[i] = new Array(json.height).fill(BoardChars.OPEN)
     }
 
-    this.scoreMatrix = new Array(json.width).fill(0)
+    this.scoreMatrix = new Array(json.width)
     for (var i = this.scoreMatrix.length - 1; i >= 0; i--) {
-      this.scoreMatrix[i] = new Array(json.height).fill(0)
+      this.scoreMatrix[i] = new Array(json.height).fill({score: 0, distance: 0})
+      for (var j = scoreMatrjx.length - 1; j >= 0; j--) {
+        scoreMatrix[i][j].distance = Math.abs(this.mePos.x - i) + Math.abs(this.mePos.y - j)
+      }
     }
 
     // Food pieces
@@ -62,7 +65,7 @@ class Board {
     for (var i = 0; i < this.scoreMatrix[0].length; i++) {
       let rowOutput = ''
       for (let column of this.scoreMatrix) {
-        const score = Math.round(column[i]).toString()
+        const score = Math.round(column[i].score).toString()
         rowOutput += `${score + '.'.repeat(4 - score.length)} `
       }
       console.log(rowOutput)
@@ -71,26 +74,32 @@ class Board {
 
   safetyScore (proposed) {
     let score = 0
-    const distance = Math.max(Math.abs(this.mePos.x - proposed.x), Math.abs(this.mePos.y - proposed.y))
-    console.log(`Scoring (${proposed.x},${proposed.y}) at ${distance}`)
+    console.log(`Scoring (${proposed.x},${proposed.y}) at ${distanceOf(proposed)}`)
     // Proposed spot is gauranteed loss
-    if (distance > 4 || !this.isValid(proposed)) {
+    if (distanceOf(proposed) > 4 || !this.isValid(proposed)) {
       return 0
-    } else if (this.scoreMatrix[proposed.x][proposed.y] != 0) {
-      return this.scoreMatrix[proposed.x][proposed.y]
+    } else if (this.scoreMatrix[proposed.x][proposed.y].score != 0) {
+      return this.scoreMatrix[proposed.x][proposed.y].score
     }
 
-    this.scoreMatrix[proposed.x][proposed.y] = 'in progress'
     score += this.spaceScore(proposed)
 
-    const distanceFactor = 5 / (5 + distance)
+    const distanceFactor = 5 / (5 + distanceOf(proposed))
 
-    score += this.safetyScore(proposed.up) * distanceFactor
-    score += this.safetyScore(proposed.down) * distanceFactor
-    score += this.safetyScore(proposed.left) * distanceFactor
-    score += this.safetyScore(proposed.right) * distanceFactor
+    if (distanceOf(proposed.up) > distanceOf(proposed)) {
+      score += this.safetyScore(proposed.up) * distanceFactor
+    }
+    if (distanceOf(proposed.down) > distanceOf(proposed)) {
+      score += this.safetyScore(proposed.down) * distanceFactor
+    }
+    if (distanceOf(proposed.left) > distanceOf(proposed)) {
+      score += this.safetyScore(proposed.left) * distanceFactor
+    }
+    if (distanceOf(proposed.right) > distanceOf(proposed)) {
+      score += this.safetyScore(proposed.right) * distanceFactor
+    }
 
-    this.scoreMatrix[proposed.x][proposed.y] = score
+    this.scoreMatrix[proposed.x][proposed.y].score = score
     return score
   }
 
@@ -107,6 +116,10 @@ class Board {
     }
 
     return score
+  }
+
+  distanceOf (proposed) {
+    return this.scoreMatrix[proposed.x][proposed.y].distance
   }
 
   isValid (proposed) {
