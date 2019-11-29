@@ -6,7 +6,6 @@ class Snake {
   }
 
   get up () {
-    console.log(`Up is (${this.head.up.x},${this.head.up.y})`)
     return this.head.up
   }
 

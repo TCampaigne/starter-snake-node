@@ -16,15 +16,16 @@ class Board {
     this.health = me.health
     this.mePos = new Position(me.body[0].x, me.body[0].y)
 
-    this.matrix = new Array(json.width)
+    this.matrix = new Array(this.width)
     for (var i = this.matrix.length - 1; i >= 0; i--) {
-      this.matrix[i] = new Array(json.height).fill(BoardChars.OPEN)
+      this.matrix[i] = new Array(this.height).fill(BoardChars.OPEN)
     }
 
-    this.scoreMatrix = new Array(json.width)
-    for (var i = this.scoreMatrix.length - 1; i >= 0; i--) {
-      this.scoreMatrix[i] = new Array(json.height).fill({score: 0, distance: 0})
-      for (var j = this.scoreMatrix.length - 1; j >= 0; j--) {
+    this.scoreMatrix = new Array(this.width)
+    for (var i = 0; i < this.width; i++) {
+      this.scoreMatrix[i] = new Array(this.height).fill({score: 0, distance: 0})
+      this.logDistance()
+      for (var j = 0; j < this.height; j++) {
         this.scoreMatrix[i][j].distance = Math.abs(this.mePos.x - i) + Math.abs(this.mePos.y - j)
       }
     }
