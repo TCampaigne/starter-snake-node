@@ -129,7 +129,7 @@ class Board {
   spaceScore (proposed) {
     let score = 0
     if (this.isEnemy(proposed)) {
-      score = -1000
+      score = -10000 / (this.distanceOf(proposed))^2
     } else if (!this.isValid(proposed)) {
       score = 0
     } else if (this.isFood(proposed)) {
