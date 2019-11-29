@@ -134,10 +134,7 @@ class Board {
   }
 
   distanceOf (proposed) {
-    console.log("distancing")
-    console.log(proposed.x)
-    console.log(proposed.y)
-    return this.distanceMatrix[proposed.x][proposed.y]
+    return Math.abs(this.mePos.x - proposed.x) + Math.abs(this.mePos.y - proposed.y)
   }
 
   isValid (proposed) {
