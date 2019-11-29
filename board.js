@@ -118,7 +118,7 @@ class Board {
       score += this.safetyScore(proposed.right) * distanceFactor
     }
 
-    if (this.distanceOf(proposed) = 1 && score <= 0 && this.isValid(proposed)) {
+    if (this.distanceOf(proposed) == 1 && score <= 0 && this.isValid(proposed)) {
       score = 1
     }
 
