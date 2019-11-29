@@ -76,9 +76,9 @@ class Board {
     if (!this.isValid(proposed)) {
       score = 0
     } else if (this.isFood(proposed)) {
-      score = (200 * ((100 - this.health) / 100))
+      score = 100 + (200 * ((100 - this.health) / 100)^(100 - this.health))
     } else if (this.isEnemy(proposed)) {
-      score = -1000
+      score = -10000
     } else if (this.isOpen(proposed)) {
       score = 100
     }
